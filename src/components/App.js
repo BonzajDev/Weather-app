@@ -14,7 +14,7 @@ class App extends Component {
     temperature: '',
     pressure: '',
     wind: '',
-    err: false
+    error: false
   }
 
   handleInputValue = (e) => {
@@ -38,13 +38,23 @@ class App extends Component {
       })
       .then(res => res.json())
       .then(data => {
+        const date = new Date().toLocaleString();
+
         this.setState({
-          error: false
+          error: false,
+          date: date,
+          city: this.state.value,
+          sunrise: data.sys.sunrise,
+          sunset: data.sys.sunset,
+          temperature: data.main.temp,
+          pressure: data.main.pressure,
+          wind: data.wind.speed,
         })
       })
       .catch(err => {
         this.setState({
-          error: true
+          error: true,
+          city: this.state.value
         })
       })
   }
@@ -53,7 +63,7 @@ class App extends Component {
     return (
       <div className="App">
         <SearchForm value={this.state.value} change={this.handleInputValue} click={this.handleClick} />
-        <Result />
+        <Result data={this.state} />
       </div>
     );
   }
