@@ -1,0 +1,68 @@
+@import './variables.scss';
+
+.form {
+    flex-basis: 20%;
+    background-color: rgba(#000, 0.7);
+    border-radius: 10px;
+    width: 90%;
+    margin-top: 10px;
+    
+    
+    form {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 100%;
+        
+        
+        .searchInput {
+            background-color: transparent;
+            border-bottom: 2px solid white;
+            border-radius: 10px;
+            height: 30%;
+            width: 70%;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            outline: none;
+        }
+        .searchInput::placeholder {
+            color: white;
+        }
+        .searchInput:hover {
+            background-color: rgba(#444, 0.6);
+        }
+
+        .searchButton {
+            background-color: transparent;
+            border: 2px solid white;
+            border-radius: 10px;
+            height: 30%;
+            width: 20%;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .searchButton:hover {
+            background-color: rgba(rgb(16, 110, 31), 0.6);
+        }
+    }
+    
+}
+
+@media (max-width: 640px) and (orientation: portrait) {
+    .form {
+        form {
+            flex-direction: column;
+            .searchButton {
+                width: 60%;
+            }
+        }
+    }
+}

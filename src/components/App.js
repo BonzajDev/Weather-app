@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../assets/styles/App.scss';
 import SearchForm from './SearchForm';
 import Result from './Result';
 const APIKey = 'c710934e51b92d3574c165f2e71fdc08';
@@ -14,12 +15,14 @@ class App extends Component {
     temperature: '',
     pressure: '',
     wind: '',
+    weather: '',
+    timezone: '',
     error: false
   }
 
   handleInputValue = (e) => {
     const value = e.target.value;
-
+    console.log(this.state.weather);
     this.setState({
       value: value
     })
@@ -49,6 +52,8 @@ class App extends Component {
           temperature: data.main.temp,
           pressure: data.main.pressure,
           wind: data.wind.speed,
+          weather: data.weather[0].main,
+          timezone: data.timezone
         })
       })
       .catch(err => {
@@ -61,9 +66,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <SearchForm value={this.state.value} change={this.handleInputValue} click={this.handleClick} />
-        <Result data={this.state} />
+      <div className="mainContainer">
+        <div className="panel">
+          <SearchForm value={this.state.value} change={this.handleInputValue} click={this.handleClick} />
+          <Result data={this.state} />
+        </div>
+
       </div>
     );
   }

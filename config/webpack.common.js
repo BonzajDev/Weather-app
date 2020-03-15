@@ -25,7 +25,7 @@ module.exports = {
             }]
         },
         {
-            test: /.*\.(gif|png|jp(e*)g|svg)$/i,
+            test: /.*\.(gif|png|jp(e*)g)$/i,
             use: [{
                 loader: "url-loader",
                 options: {
@@ -33,6 +33,11 @@ module.exports = {
                     name: "images/[name]_[hash:7].[ext]"
                 }
             }]
+        },
+        {
+            test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+            include: path.join(__dirname, "src/assets/images"),
+            loader: "file-loader?name=/[name].[ext]"
         },
         // Vendor CSS loader
         // This is necessary to pack third party libraries like antd
